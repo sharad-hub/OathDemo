@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+<script src="~/signalr/hubs"></script>
+<script>
+    var myHubProxy = $.connection.ChatHub
+    myHubProxy.client.stopClient = function () {
+        $.connection.hub.stop();
+    };
+
+    //How to continuously reconnect
+    $.connection.hub.disconnected(function () {
+        setTimeout(function () {
+            $.connection.hub.start();
+        }, 5000); // Restart connection after 5 seconds.
+    });
+
+    var tryingToReconnect = false;
+
+    $.connection.hub.reconnecting(function () {
+        tryingToReconnect = true;
+    });
+
+    $.connection.hub.reconnected(function () {
+        tryingToReconnect = false;
+    });
+
+    $.connection.hub.disconnected(function () {
+        if (tryingToReconnect) {
+            notifyUserOfDisconnect(); // Your function to notify user.
+        }
+    });
+
+    /////////////////
+    $.connection.hub.connectionSlow(function () {
+        notifyUserOfConnectionProblem(); // Your function to notify user.
+    });
+    $.connection.hub.reconnecting(function () {
+        notifyUserOfTryingToReconnect(); // Your function to notify user.
+    });
+</script>

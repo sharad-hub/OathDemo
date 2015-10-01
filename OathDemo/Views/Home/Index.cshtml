@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET Identity</h1>
+    <p class="lead">ASP.NET Identity is the membership system for ASP.NET apps. Following are the features of ASP.NET Identity in this sample application.</p>
+    <p><a href="http://www.asp.net/identity" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <dl>
+            <dt>Initialize ASP.NET Identity</dt>
+            <dd>
+                You can initialize ASP.NET Identity when the application starts. Since ASP.NET Identity is Entity Framework based in this sample,
+                you can create DatabaseInitializer which is configured to get called each time the app starts.
+                <strong>Please look in App_Start\IdentityConfig.cs</strong>
+                This code shows the following
+                <ul>
+                    <li>When should the Initializer run and when should the database be created</li>
+                    <li>Create Admin user</li>
+                    <li>Create Admin role</li>
+                    <li>Add Admin user to Admin role</li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-4">
+        <dl>
+            <dt>Add profile data for the user</dt>
+            <dd>
+                <a href="http://blogs.msdn.com/b/webdev/archive/2013/10/16/customizing-profile-information-in-asp-net-identity-in-vs-2013-templates.aspx">Please follow this tutorial.</a>
+
+                <ul>
+                    <li>Add profile information in the Users Table</li>
+                    <li>Look in Models\IdentityModels.cs for examples</li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-4">
+        <dl>
+            <dt>Validation</dt>
+            <dd>
+                When you create a User using a username or password, the Identity system performs validation on the username and password, and the passwords are hashed before they are
+                stored in the database. You can customize the validation by changing some of the properties of the validators such as Turn alphanumeric on/off, set minimum password length
+                or you can write your own custom validators and register them with the UserManager.
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-4">
+        <dl>
+            <dt>Register a user and login</dt>
+            <dd>
+                Click @Html.ActionLink("Register", "Register", "Account") and see the code in AccountController.cs and Register Action.
+                Click @Html.ActionLink("Log in", "Login", "Account") and see the code in AccountController.cs and Login Action.
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-md-4">
+
+    </div>
+
+    </div>
